@@ -66,14 +66,50 @@
   <body>
     <a-scene
       vr-mode-ui="enabled: false"
-      arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;"
-    >
+      arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;">
+
     <a-box width="0.25" height="0.25" depth="0.25" position="-0.25 1.125 -0.75" rotation="0 45 0" color="#4CC3D9"></a-box>
     <a-sphere position="0 1.3125 -1.25" radius="0.3125" color="#EF2D5E"></a-sphere>
     <a-cylinder position="0.25 1.1875 -0.75" radius="0.125" height="0.375" color="#FFC65D"></a-cylinder>
     <a-plane position="0 0 -1" rotation="-90 0 0" width="1" height="1" color="#7BC8A4" shadow></a-plane>
 
-      <a-camera  rotation-reader> </a-camera>
+      <a-assets timeout="30000">
+        <!-- Model source: https://sketchfab.com/3d-models/spinosaurus-2135501583704537907645bf723685e7
+             Model author: https://sketchfab.com/VapTor
+             Model license: CC Attribution -->
+        <a-asset-item id="spinosaurus" src="https://cdn.glitch.com/324a5290-5aa7-4efc-92d6-ae0736433b12%2Fspinosaurus.glb" response-type="arraybuffer"></a-asset-item>
+      </a-assets>
+     
+     
+     <a-camera position="0 1.2 0"></a-camera>
+
+ <a-entity id="dino" position="-1 0 -3" scale="0.5 0.5 0.5">
+        <a-entity position="0 2.15 0" rotation="0 55 0"
+                  gltf-model="#spinosaurus"
+                  animation-mixer
+                  shadow="cast: true; receive: false"></a-entity>
+      </a-entity>  
+      
+      <a-entity light="type: ambient; intensity: 0.5;"></a-entity>
+      <a-light type="directional"
+               light="castShadow: true;
+                      shadowMapHeight: 1024;
+                      shadowMapWidth: 1024;
+                      shadowCameraLeft: -7;
+                      shadowCameraRight: 5;
+                      shadowCameraBottom: -5;
+                      shadowCameraTop: 5;"
+               id="light"
+               target="dino"
+               position="-5 3 1.5"></a-light>
+
+      <!-- This shadow-receiving plane is only visible in AR mode. -->
+      <a-plane height="15" width="15" position="0 0 -3" rotation="-90 0 0"
+               shadow="receive: true"
+               ar-shadows="opacity: 0.3"
+               visible="false"></a-plane>
+
+     
     </a-scene>
   </body>
 </html>
