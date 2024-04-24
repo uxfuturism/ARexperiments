@@ -91,9 +91,9 @@
      
      <a-camera  rotation-reader> </a-camera>
      
- <a-entity id="dino" position="0 -2 -20" scale="1.2 1.2 1.2">
+ <a-entity id="ARcard" position="0 -2 -20" scale="1.2 1.2 1.2">
         <a-entity position="0 0 0" rotation="0 -90 0"
-                  gltf-model="#spinosaurus"
+                  gltf-model="#globe"
                   animation-mixer
                   shadow="cast: true; receive: false"></a-entity>
       </a-entity>  
@@ -108,7 +108,7 @@
                       shadowCameraBottom: -5;
                       shadowCameraTop: 5;"
                id="light"
-               target="dino"
+               target="ARcard"
                position="-0.1 8 20"></a-light>
      
     </a-scene>
