@@ -64,22 +64,23 @@
     </head>
 
   <body>
-    <a-scene
+     <a-scene
       vr-mode-ui="enabled: false"
-      arjs="debugUIEnabled: false;">
+      arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;"
+    >
 
       <a-assets timeout="30000">
         <a-asset-item id="spinosaurus" src="https://uxfuturism.github.io/learnar/ARglobev1.glb" response-type="arraybuffer"></a-asset-item>
       </a-assets>
      
      
-     <a-camera position="0 0 0"></a-camera>
+     <a-camera  rotation-reader> </a-camera>
      
  <a-entity id="dino" position="0 -2 -20" scale="1 1 1">
         <a-entity position="0 0 0" rotation="0 -90 0"
                   gltf-model="#spinosaurus"
                   animation-mixer
-                  shadow="cast: true; receive: true"></a-entity>
+                  shadow="cast: true; receive: false"></a-entity>
       </a-entity>  
       
       <a-entity light="type: ambient; intensity: 0.5;"></a-entity>
